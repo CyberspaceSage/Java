@@ -24,27 +24,21 @@ public class MyFirstProgram {
 
 
 		Square s = new Square (5);
-		System.out.println("Площаль квадрата со стороной "+ s.l + " = " + area(s));
+		System.out.println("Площаль квадрата со стороной "+ s.l + " = " + s.area());
 
 		System.out.println();
 
 		Rectangle r = new Rectangle (4,6);
-		System.out.println("Площадь прямоугольника со сторонами " + r.a + " и " + r.b + " = " + area  (r));
+		System.out.println("Площадь прямоугольника со сторонами " + r.a + " и " + r.b + " = " + r.area ());
 		}
 
 		public static void hello (String somebody) {
 			System.out.println("Hello my dear friend" + somebody + "!");
-		}
 
-		public static double area (Square s){
-		return s.l * s.l;
-		}
-		public static double area (Rectangle r){
-		return r.a * r.b;
-		}
 //		public static double distance (Point P){
 //		return Math.sqrt((P.p3-P.p1)*(P.p3-P.p1)+(P.p4-P.p2)*(P.p4-P.p2));
 		}
+}
 
 
 
