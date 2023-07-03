@@ -51,4 +51,12 @@ public class ContactHelper extends HelperBase {
         acceptNextAlert = true;
       }
     }
+
+    public void editContactForm() {
+        click(By.xpath("//img[@alt='Edit']"));
+    }
+
+    public void updateContactForm() {
+        click(By.name("update"));
+    }
 }
