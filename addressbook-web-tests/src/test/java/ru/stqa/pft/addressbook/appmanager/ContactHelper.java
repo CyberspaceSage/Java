@@ -3,6 +3,8 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import static org.testng.Assert.assertTrue;
 
@@ -18,7 +20,7 @@ public class ContactHelper extends HelperBase {
       click(By.linkText("home page"));
       click(By.linkText("Logout"));
     }
-    public void fillContactForm(ContactData contactData) {
+    public void fillContactForm(ContactData contactData, boolean creation) {
         type(By.name("firstname"), contactData.getFirstname());
         type(By.name("middlename"),contactData.getMiddlename());
         type(By.name("lastname"), contactData.getLastname());
@@ -27,6 +29,12 @@ public class ContactHelper extends HelperBase {
         type(By.name("home"), contactData.getHomePhone());
         type(By.name("mobile"), contactData.getMobilePhone());
         type(By.name("email"), contactData.getEmail());
+
+        if (creation) {
+            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+        } else {
+            Assert.assertFalse(isElementPresent(By.name("new_group")));
+        }
     }
     public void confirmDeleteContact() {
       assertTrue(closeAlertAndGetItsText().matches("^Delete 1 addresses[\\s\\S]$"));
