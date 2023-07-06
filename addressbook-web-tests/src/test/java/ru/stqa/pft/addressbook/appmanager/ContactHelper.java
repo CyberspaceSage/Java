@@ -18,7 +18,6 @@ public class ContactHelper extends HelperBase {
     }
     public void returnToContactPage() {
       click(By.linkText("home page"));
-      click(By.linkText("Logout"));
     }
     public void fillContactForm(ContactData contactData, boolean creation) {
         type(By.name("firstname"), contactData.getFirstname());
@@ -66,5 +65,15 @@ public class ContactHelper extends HelperBase {
 
     public void updateContactForm() {
         click(By.name("update"));
+    }
+
+    public void createContact(ContactData contactData, boolean b) {
+        fillContactForm(contactData,b);
+        commitToContactForm();
+        returnToContactPage();
+    }
+
+    public boolean isThereAContact() {
+        return isElementPresent(By.xpath("//img[@alt='Edit']"));
     }
 }
