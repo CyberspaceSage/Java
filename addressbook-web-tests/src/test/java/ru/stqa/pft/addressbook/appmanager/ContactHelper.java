@@ -67,13 +67,18 @@ public class ContactHelper extends HelperBase {
         click(By.name("update"));
     }
 
-    public void createContact(ContactData contactData, boolean b) {
-        fillContactForm(contactData,b);
+    public void createContact(ContactData contactData) {
+        fillContactForm(contactData,true);
         commitToContactForm();
         returnToContactPage();
+
     }
 
     public boolean isThereAContact() {
         return isElementPresent(By.xpath("//img[@alt='Edit']"));
+    }
+
+    public boolean isThereAGroup() {
+        return isElementPresent(By.xpath("//*/text()[normalize-space(.)='test3']/parent::*"));
     }
 }
