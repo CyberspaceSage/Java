@@ -71,7 +71,6 @@ public class ContactHelper extends HelperBase {
         fillContactForm(contactData,true);
         commitToContactForm();
         returnToContactPage();
-
     }
 
     public boolean isThereAContact() {
