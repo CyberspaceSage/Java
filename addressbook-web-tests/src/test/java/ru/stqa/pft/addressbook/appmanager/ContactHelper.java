@@ -19,10 +19,10 @@ public class ContactHelper extends HelperBase {
         super(wd);
     }
     public void commitToContactForm() {
-      click(By.xpath("//div[@id='content']/form/input[21]"));
+        click(By.xpath("//div[@id='content']/form/input[21]"));
     }
     public void returnToContactPage() {
-      click(By.linkText("home page"));
+        click(By.linkText("home page"));
     }
     public void gotoHomePage() {
         click(By.linkText("home"));
@@ -40,6 +40,7 @@ public class ContactHelper extends HelperBase {
         type(By.name("email"), contactData.getEmail());
         type(By.name("email2"), contactData.getSecondEmail());
         type(By.name("email3"), contactData.getThirdEmail());
+        attach(By.name("photo"), contactData.getPhoto());
 
         if (creation) {
             new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
@@ -48,27 +49,27 @@ public class ContactHelper extends HelperBase {
         }
     }
     public void confirmDeleteContact() {
-      assertTrue(closeAlertAndGetItsText().matches("^Delete 1 addresses[\\s\\S]$"));
+        assertTrue(closeAlertAndGetItsText().matches("^Delete 1 addresses[\\s\\S]$"));
     }
     public void deleteSelectedContact() {
-      click(By.xpath("//input[@value='Delete']"));
+        click(By.xpath("//input[@value='Delete']"));
     }
     public void selectContactById(int id) {
         wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
     }
     public String closeAlertAndGetItsText() {
-      try {
-        Alert alert = wd.switchTo().alert();
-        String alertText = alert.getText();
-        if (acceptNextAlert) {
-          alert.accept();
-        } else {
-          alert.dismiss();
+        try {
+            Alert alert = wd.switchTo().alert();
+            String alertText = alert.getText();
+            if (acceptNextAlert) {
+                alert.accept();
+            } else {
+                alert.dismiss();
+            }
+            return alertText;
+        } finally {
+            acceptNextAlert = true;
         }
-        return alertText;
-      } finally {
-        acceptNextAlert = true;
-      }
     }
 
     public void editContactForm(int id) {
@@ -86,11 +87,11 @@ public class ContactHelper extends HelperBase {
         returnToContactPage();
     }
     public void modify(ContactData contact) {
-       editContactForm(contact.getId());
-       fillContactForm(contact,false);
-       updateContactForm();
-       contactCache = null;
-       returnToContactPage();
+        editContactForm(contact.getId());
+        fillContactForm(contact,false);
+        updateContactForm();
+        contactCache = null;
+        returnToContactPage();
     }
     public void delete(ContactData contact) {
         selectContactById(contact.getId());
@@ -114,7 +115,7 @@ public class ContactHelper extends HelperBase {
     public Contacts all() {
         if (contactCache != null) {
             return new Contacts(contactCache);
-            }
+        }
         contactCache = new Contacts();
         List <WebElement> elements = wd.findElements((By.name("entry")));
         for (WebElement element : elements) {
@@ -147,4 +148,3 @@ public class ContactHelper extends HelperBase {
                 .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work);
     }
 }
-
