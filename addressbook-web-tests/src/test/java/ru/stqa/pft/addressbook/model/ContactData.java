@@ -18,6 +18,7 @@ public class ContactData {
     private String company;
     @Expose
     private String address;
+    @Expose
     private String homePhone;
     @Expose
     private String mobilePhone;
@@ -33,9 +34,9 @@ public class ContactData {
     private String email3;
     @Expose
     private String group;
-    @Expose
+
     private String allPhones;
-    @Expose
+
     private String allEmails;
     @Expose
     private File photo;
